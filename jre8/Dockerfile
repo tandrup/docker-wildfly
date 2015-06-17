@@ -8,6 +8,9 @@ ENV WILDFLY_VERSION 8.2.0.Final
 # Make sure the distribution is available from a well-known place
 RUN cd $HOME && curl http://download.jboss.org/wildfly/$WILDFLY_VERSION/wildfly-$WILDFLY_VERSION.tar.gz | tar zx && mv $HOME/wildfly-$WILDFLY_VERSION $HOME/wildfly
 
+# Fix configuration for Java 8
+ADD standalone.conf wildfly/bin/
+
 # Set the JBOSS_HOME env variable
 ENV JBOSS_HOME /opt/jboss/wildfly
 
